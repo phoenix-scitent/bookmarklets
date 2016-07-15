@@ -1,0 +1,1 @@
+javascript: (function () { alert('autocompleting!'); var jsCode = document.createElement('script'); jsCode.setAttribute('type', 'text/javascript'); jsCode.setAttribute('src', 'https://raw.githubusercontent.com/phoenix-scitent/bookmarklets/master/autocomplete-learndash.js'); document.body.appendChild(jsCode);  }());
