@@ -1,8 +1,13 @@
+'use strict';
+
 // Scitent bookmarklet code to autocomplete LearnDash courses with all correct answers
 (function(){ /* code */ 
 	// jQuery('[value="1"]').attr('checked','checked');
 	// jQuery('[value="Next"]').trigger('click');
-	populate_scitent_ace_bookmarklet();
+	scitent = populate_scitent_ace_bookmarklet();
+	s_lba = scitent.learndash_bookmarklet_answerer;
+	s_lba.init_ld_json(); // initialize json from page (s_toph.learndash_json)
+	var breakpointhere = 1;
 }());
 
 function populate_scitent_ace_bookmarklet() {
@@ -16,6 +21,16 @@ if(!scitent.utils) { scitent.utils = {}; }
 
 scitent = jQuery.extend({}, scitent, {
 	learndash_bookmarklet_answerer: { // use jQuery to select answers to questions
+		learndash_json: {}, // until parsed with init_ld_json
+		init_ld_json: function() {
+			'use strict';
+			if( !jQuery('.wpProQuiz_content').length ) { return; }
+			var wpProID = this.qzid;
+			var load_func = window['load_wpProQuizFront' + wpProID ];
+			var load_str = load_func.toString();
+			var question_config = JSON.parse(load_str.substring(load_str.indexOf("json") + 5, load_str.lastIndexOf("})")));
+			this.learndash_json = question_config;
+		},
 		solve_these: function(qzid, idlist, solutionjson) { // idlist of questions to solve
 			'use strict';
 			for(var i in solutionjson) {
@@ -66,4 +81,5 @@ scitent = jQuery.extend({}, scitent, {
 	}
 });
 
+return scitent;
 }
