@@ -6,6 +6,10 @@
 	// jQuery('[value="Next"]').trigger('click');
 	var scitent = populate_scitent_ace_bookmarklet();
 	var s_lba = scitent.learndash_bookmarklet_answerer;
+	var qzid = s_lba.init_qzid(); // wppro quiz id
+	if( -1 === qzid ) {
+		return;
+	}
 	s_lba.init_ld_json(); // initialize json from page (s_toph.learndash_json)
 	s_lba.solve_these(); // answer them all correctly!
 
@@ -24,6 +28,24 @@ if(!scitent.utils) { scitent.utils = {}; }
 
 scitent = jQuery.extend({}, scitent, {
 	learndash_bookmarklet_answerer: { // use jQuery to select answers to questions
+		qzid: -1,
+		init_or_restart: function() {
+			'use strict';
+			scitent.retake_helper.got_corrects = [];
+			this.init_qzattstamp();
+		},
+		init_qzid: function() {
+			'use strict';
+			if( !jQuery('.wpProQuiz_content').length ) { return -1; }
+			this.qzid = jQuery('.wpProQuiz_content').attr('id').slice('wpProQuiz_'.length);
+			return this.qzid;
+		},
+		qzattempt_time: 0, // until initialized
+		init_qzattstamp: function() {
+			'use strict';
+			var d = new Date();
+			this.qzattempt_time = d.getTime();	 
+		},
 		learndash_json: {}, // until parsed with init_ld_json
 		init_ld_json: function() {
 			'use strict';
