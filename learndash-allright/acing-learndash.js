@@ -5,8 +5,11 @@
 	// jQuery('[value="1"]').attr('checked','checked');
 	// jQuery('[value="Next"]').trigger('click');
 	var scitent = populate_scitent_ace_bookmarklet();
-	s_lba = scitent.learndash_bookmarklet_answerer;
+	var s_lba = scitent.learndash_bookmarklet_answerer;
 	s_lba.init_ld_json(); // initialize json from page (s_toph.learndash_json)
+	s_lba.solve_these(); // answer them all correctly!
+
+
 	var breakpointhere = 1;
 }());
 
@@ -31,14 +34,22 @@ scitent = jQuery.extend({}, scitent, {
 			var question_config = JSON.parse(load_str.substring(load_str.indexOf("json") + 5, load_str.lastIndexOf("})")));
 			this.learndash_json = question_config;
 		},
-		solve_these: function(qzid, idlist, solutionjson) { // idlist of questions to solve
+		solve_these: function() { // idlist of questions to solve
 			'use strict';
-			for(var i in solutionjson) {
-				var q = solutionjson[i];
-				if(q.id && scitent.utils.array_contains(idlist,q.id)) {
-					if(q.type && q.correct && window['scitent']['learndash_bookmarklet_answerer'][q.type]){
-						window['scitent']['learndash_bookmarklet_answerer'][q.type](qzid, q.id, q.correct);
-					}
+			for (var qnid in this.learndash_json) {
+			    if( !this.learndash_json.hasOwnProperty(qnid) ) { // skip inherited props
+			    	continue;
+			    }
+		      	var question = this.learndash_json[qnid];
+				var qname = 'question_' + this.qzid + '_' + qnid;
+				var $q = jQuery('input[name="'+qname+'"]');
+				if( $q.is(':checked') ) {
+					continue; // skip this if there is already a selected choice
+				}
+				for(var choice in question.correct) { 
+					if(question.correct[choice] ){ // get single correct answer
+						$q.eq(choice).prop('checked','checked');
+					} 
 				}
 			}
 		},
