@@ -4,7 +4,7 @@
 (function(){ /* code */ 
 	// jQuery('[value="1"]').attr('checked','checked');
 	// jQuery('[value="Next"]').trigger('click');
-	scitent = populate_scitent_ace_bookmarklet();
+	var scitent = populate_scitent_ace_bookmarklet();
 	s_lba = scitent.learndash_bookmarklet_answerer;
 	s_lba.init_ld_json(); // initialize json from page (s_toph.learndash_json)
 	var breakpointhere = 1;
