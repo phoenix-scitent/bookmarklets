@@ -12,7 +12,7 @@
 	}
 	s_lba.init_ld_json(); // initialize json from page (s_toph.learndash_json)
 	s_lba.solve_these(); // answer them all correctly!
-	jQuery('[value="Next"]').trigger('click'); // click through "next" buttons 
+	// jQuery('[value="Next"]').trigger('click'); // click through "next" buttons 
 
 }());
 
