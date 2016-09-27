@@ -9,6 +9,7 @@
    'billing_city':'Somewhereville',
    'user_pass-':'Password',
    'user_pass_confirm-':'Password',
+   'account_password':'Password',
    'institution':'Dudes United'
   };
   for ( field in formdata ) {
