@@ -18,6 +18,7 @@
     $('[id^="'+field+'"').val(formdata[field] + suffix );
   }
   $('[id^="user_email"').val( suffix + '@dispostable.com' );
+  $('[id^="username"').val( suffix + '@dispostable.com' );
   $('[id^="billing_email"').val( suffix + '@dispostable.com' );
   $('[id^="billing_postcode"').val( '12345' );
 }(jQuery));
