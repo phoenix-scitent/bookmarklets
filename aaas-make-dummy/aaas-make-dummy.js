@@ -1,16 +1,18 @@
 (function($){
   var suffix = '_' + (parseInt(Math.random()*10000000)).toString(16);
   var formdata =
-  {'first_name-':'Dude',
+  {'first_name':'Dude',
    'billing_first_name':'Dude',
-   'last_name-':'Ranch',
+   'last_name':'Ranch',
    'billing_last_name':'Ranch',
    'billing_address':'123 Somewhere',
    'billing_city':'Somewhereville',
    'user_pass-':'Password',
+   'password':'Password',
    'user_pass_confirm-':'Password',
    'account_password':'Password',
-   'institution':'Dudes United'
+   'institution':'Dudes United',
+   'wpum_institution':'Dudes United'
   };
   for ( field in formdata ) {
     $('[id^="'+field+'"').val(formdata[field] + suffix );
