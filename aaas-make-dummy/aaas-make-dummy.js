@@ -25,8 +25,11 @@
    'wpum_institution':'Dudes United'
   };
   for ( field in formdata ) {
-    if(field.indexOf('addresses_attributes') !== -1) { continue; }
-    $('[id^="'+field+'"').val(formdata[field] + suffix );
+    if(field.indexOf('addresses_attributes') !== -1) { 
+      $('[id^="'+field+'"').val(formdata[field]); 
+    } else {
+      $('[id^="'+field+'"').val(formdata[field] + suffix );
+    }
   }
   $('[id^="user_email"').val( suffix + '@dispostable.com' );
   $('[id^="username"').val( suffix + '@dispostable.com' );
