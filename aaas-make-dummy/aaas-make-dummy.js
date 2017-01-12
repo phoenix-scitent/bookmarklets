@@ -10,6 +10,7 @@
    'last_name':'Ranch',
    'billing_last_name':'Ranch',
    'contact_phone':'5555555555',
+   'addresses_attributes[0][phone]':'5555555555',
    'addresses_attributes[0][address1]':'123 Somewhere',
    'billing_address':'123 Somewhere',
    'billing_city':'Somewhereville',
