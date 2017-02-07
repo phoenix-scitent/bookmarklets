@@ -52,7 +52,7 @@ scitent = jQuery.extend({}, scitent, {
 			var wpProID = this.qzid;
 			var load_func = window['load_wpProQuizFront' + wpProID ];
 			var load_str = load_func.toString();
-			var question_config = JSON.parse(load_str.substring(load_str.indexOf("json") + 5, load_str.lastIndexOf("})")));
+			var question_config = JSON.parse(load_str.substring(load_str.indexOf("json") + 5, load_str.lastIndexOf("}}") + 2));
 			this.learndash_json = question_config;
 		},
 		solve_these: function() { // idlist of questions to solve
